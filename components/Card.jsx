@@ -31,7 +31,7 @@ const Status = () => {
                     name={e.username}/>
                 ))}
             </div>
-            <div className={scroll <= 20 ?'hidden' : 'absolute inset-y-0 left-0 z-50 flex items-center'}>
+            <div className={scroll <= 20 ?'hidden' : 'absolute inset-y-0 left-0 z-10 flex items-center'}>
                 <button className='w-10 h-10 ml-4 rounded-full border-[1px] border-[#00000011] bg-white'
                 onClick={()=>{
                     if((ref.current.scrollLeft - ref.current.offsetWidth) < 0){
@@ -43,7 +43,7 @@ const Status = () => {
                     <FontAwesomeIcon icon={faAngleLeft} size="lg"/>
                 </button>
             </div>
-            <div className='absolute inset-y-0 right-0 z-50 flex items-center'>
+            <div className='absolute inset-y-0 right-0 z-10 flex items-center'>
                 <button
                 onClick={()=>{
                     setScroll(ref.current.scrollLeft + ref.current.offsetWidth);

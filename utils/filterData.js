@@ -11,3 +11,9 @@ export const getAuthUser = () =>{
         e.auth
     ))[0]
 }
+
+export const getUserByName = (str="") =>{
+    return data.filter((e)=>{
+        return e.username.toLowerCase().match(str.toLowerCase())
+    })
+}

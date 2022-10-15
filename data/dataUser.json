@@ -3,6 +3,7 @@
         "id" : 1,
         "auth" : true,
         "photo" : "https://picsum.photos/200?random=1",
+        "displayname" : "Hasan Nasrullah",
         "username" : "hasannasrullah",
         "story" : [
             {
@@ -14,6 +15,7 @@
         "id" : 2,
         "auth" : false,
         "photo" : "https://picsum.photos/200?random=2",
+        "displayname" : "Melin Febriani",
         "username" : "melinfebriani",
         "story" : [
             {
@@ -25,6 +27,7 @@
         "id" : 3,
         "auth" : false,
         "photo" : "https://picsum.photos/200?random=3",
+        "displayname" : "Husein Badrani",
         "username" : "huseinbadrani",
         "story" : [
             {
@@ -36,6 +39,7 @@
         "id" : 4,
         "auth" : false,
         "photo" : "https://picsum.photos/200?random=4",
+        "displayname" : "Maya Setiana",
         "username" : "mayasetiana",
         "story" : [
             {
@@ -47,6 +51,7 @@
         "id" : 5,
         "auth" : false,
         "photo" : "https://picsum.photos/200?random=5",
+        "displayname" : "Afan Oktafianto",
         "username" : "afanokta",
         "story" : [
             {
@@ -58,6 +63,7 @@
         "id" : 6,
         "auth" : false,
         "photo" : "https://picsum.photos/200?random=6",
+        "displayname" : "Yanuar Bimantara",
         "username" : "yanuarbima",
         "story" : [
             {
@@ -69,6 +75,7 @@
         "id" : 7,
         "auth" : false,
         "photo" : "https://picsum.photos/200?random=7",
+        "displayname" : "Rafli Daffa Rahman",
         "username" : "raflidaffa",
         "story" : [
             {
@@ -80,6 +87,7 @@
         "id" : 8,
         "auth" : false,
         "photo" : "https://picsum.photos/200?random=8",
+        "displayname" : "Herdian Bayu",
         "username" : "herdianbayu",
         "story" : [
             {
@@ -91,6 +99,7 @@
         "id" : 9,
         "auth" : false,
         "photo" : "https://picsum.photos/200?random=9",
+        "displayname" : "Hasan Nasrullah",
         "username" : "angganasetya",
         "story" : [
             {
@@ -102,6 +111,7 @@
         "id" : 10,
         "auth" : false,
         "photo" : "https://picsum.photos/200?random=10",
+        "displayname" : "Hasan Nasrullah",
         "username" : "triadi",
         "story" : [
             {
