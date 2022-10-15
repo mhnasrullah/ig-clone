@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { Head } from "next/document";
 import Card from "../components/Card";
 
 export default function Home() {
