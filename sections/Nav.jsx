@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faCircle,faCompass,faMessage,faHeart,faSquarePlus } from '@fortawesome/free-regular-svg-icons'
 import { faMagnifyingGlass, faBars } from '@fortawesome/free-solid-svg-icons'
 import Anchor from '../components/Anchor'
 import Image from 'next/image'
+import { WindowCtx } from '../context'
 
 const navIcon = [
     {
@@ -42,24 +43,30 @@ const navIcon = [
 export default function Nav() {
 
     const [active,setActive] = useState(1);
+    const {
+        size : {get : windowSize},
+        auth : {get : auth}
+    } = useContext(WindowCtx);
 
   return (
-    <nav className='flex flex-col w-16 h-screen pt-16 border-r-[1px] border-r-[#00000011]'>
-        <FontAwesomeIcon icon={faInstagram} size="2x" className='mb-16'/>
+    <nav className='flex flex-col w-1/6 md:w-1/12 h-screen pt-16 border-r-[1px] border-r-[#00000011]'>
+        <FontAwesomeIcon icon={faInstagram} size={windowSize == "lg" ? "2x" : "xl" } className='mb-16'/>
 
         <div className='flex flex-col space-y-10'>
             {navIcon.map((e,i)=>(
                 <Anchor type={"link"} setActive={(e)=>setActive(e)} id={e.id} key={e.id} href={e.href} active={active==e.id} className="text-center">
-                    <FontAwesomeIcon icon={e.icon} size="2x"/>
+                    <FontAwesomeIcon icon={e.icon} size={windowSize == "lg" ? "2x" : "xl" }/>
                 </Anchor>
             ))}
             <div className='relative flex justify-center'>
-                <Image src={"https://picsum.photos/200"} className="rounded-full" width={40} objectFit="cover" height={40}/>
+                {auth ? (
+                    <Image src={auth?.photo} className="rounded-full" width={35} objectFit="cover" height={35}/>
+                ) : false}
             </div>
         </div>
 
         <Anchor type={"link"} setActive={()=>setActive(6)} href={"/"} active={active==6} className="text-center mt-16">
-            <FontAwesomeIcon icon={faBars} size="2x"/>
+            <FontAwesomeIcon icon={faBars} size={windowSize == "lg" ? "2x" : "xl" }/>
         </Anchor>
 
     </nav>

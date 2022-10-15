@@ -1,0 +1,112 @@
+[
+    {
+        "id" : 1,
+        "auth" : true,
+        "photo" : "https://picsum.photos/200?random=1",
+        "username" : "hasannasrullah",
+        "story" : [
+            {
+                "id" : 11
+            }
+        ]
+    },
+    {
+        "id" : 2,
+        "auth" : false,
+        "photo" : "https://picsum.photos/200?random=2",
+        "username" : "melinfebriani",
+        "story" : [
+            {
+                "id" : 21
+            }
+        ]
+    },
+    {
+        "id" : 3,
+        "auth" : false,
+        "photo" : "https://picsum.photos/200?random=3",
+        "username" : "huseinbadrani",
+        "story" : [
+            {
+                "id" : 31
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "auth" : false,
+        "photo" : "https://picsum.photos/200?random=4",
+        "username" : "mayasetiana",
+        "story" : [
+            {
+                "id" : 41
+            }
+        ]
+    },
+    {
+        "id" : 5,
+        "auth" : false,
+        "photo" : "https://picsum.photos/200?random=5",
+        "username" : "afanokta",
+        "story" : [
+            {
+                "id" : 51
+            }
+        ]
+    },
+    {
+        "id" : 6,
+        "auth" : false,
+        "photo" : "https://picsum.photos/200?random=6",
+        "username" : "yanuarbima",
+        "story" : [
+            {
+                "id" : 61
+            }
+        ]
+    },
+    {
+        "id" : 7,
+        "auth" : false,
+        "photo" : "https://picsum.photos/200?random=7",
+        "username" : "raflidaffa",
+        "story" : [
+            {
+                "id" : 71
+            }
+        ]
+    },
+    {
+        "id" : 8,
+        "auth" : false,
+        "photo" : "https://picsum.photos/200?random=8",
+        "username" : "herdianbayu",
+        "story" : [
+            {
+                "id" : 81
+            }
+        ]
+    },
+    {
+        "id" : 9,
+        "auth" : false,
+        "photo" : "https://picsum.photos/200?random=9",
+        "username" : "angganasetya",
+        "story" : [
+            {
+                "id" : 91
+            }
+        ]
+    },
+    {
+        "id" : 10,
+        "auth" : false,
+        "photo" : "https://picsum.photos/200?random=10",
+        "username" : "triadi",
+        "story" : [
+            {
+                "id" : 101
+            }
+        ]
+    }
+]

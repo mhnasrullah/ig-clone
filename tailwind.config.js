@@ -6,6 +6,9 @@ module.exports = {
     "./sections/**/*.{js,jsx}",
   ],
   theme: {
+    fontFamily:{
+      "rob" : ['Roboto', 'sans-serif']
+    },
     extend: {},
   },
   plugins: [],
