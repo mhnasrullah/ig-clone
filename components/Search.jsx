@@ -29,7 +29,7 @@ export default function Search() {
     {search ? (
         <div className='w-full py-10 h-96 bg-white absolute top-[120%] rounded-lg z-50'>
             {data.map((e,i)=>(
-                <Link href="/">
+                <Link href="/" key={i}>
                     <a className='flex space-x-4 items-center px-4 py-4 hover:bg-[#00000009]' key={i}>
                         <Image src={e.photo} width={50} height={50} className="rounded-full" objectFit="cover" objectPosition={"center"}/>
                         <div>

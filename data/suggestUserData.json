@@ -1,0 +1,23 @@
+[
+    {
+        "id" : 1,
+        "photo" : "/asset/avatar/1.svg",
+        "username" : "cristiano_",
+        "displayname" : "Cristiano Ronaldo",
+        "follower" : "451M"
+    },
+    {
+        "id" : 2,
+        "photo" : "/asset/avatar/3.svg",
+        "username" : "kyliejenner",
+        "displayname" : "Kylie Jenner",
+        "follower" : "345M"
+    },
+    {
+        "id" : 3,
+        "photo" : "/asset/avatar/2.svg",
+        "username" : "leomessi",
+        "displayname" : "Leonel Messi",
+        "follower" : "334M"
+    }
+]
