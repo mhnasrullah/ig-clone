@@ -6,11 +6,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Search() {
-    const[search,setSearch] = useState(null)
+    const[search,setSearch] = useState("")
     const [data,setData] = useState([])
 
     useEffect(()=>{
-        if(search != null){
+        if(search){
             setData(getUserByName(search));
         }
     },[search])
@@ -19,9 +19,9 @@ export default function Search() {
   <div className='relative'>
     <div className='bg-gray-100 border-[1px] flex items-center space-x-2 border-[#00000011] rounded-lg p-2 mb-4'>
         <FontAwesomeIcon icon={faSearch} size="sm" className='text-gray-400'/>
-        <input type="text" className='outline-none bg-transparent w-full' placeholder='Search' onChange={(e)=>setSearch(e.currentTarget.value)}/>
+        <input type="text" className='outline-none bg-transparent w-full' value={search} placeholder='Search' onChange={(e)=>setSearch(e.currentTarget.value)}/>
         {search ? (
-            <button>
+            <button onClick={()=>setSearch("")}>
                 <FontAwesomeIcon icon={faCircleXmark} size="sm" className='text-gray-400'/>
             </button>
         ) : false}

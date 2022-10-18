@@ -3,7 +3,6 @@ import StatusCom from '../sections/Status'
 import { getHasStatus } from '../utils/filterData'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import style from './style.module.css'
 
 const Status = () => {
     const [data,setData] = useState([]);
@@ -23,7 +22,7 @@ const Status = () => {
     },[])
     return (
         <div className='relative'>
-            <div ref={ref} className={`flex space-x-4 w-full overflow-x-auto scroll-smooth bg-white py-4 border-[1px] px-4 border-[#00000011] rounded-lg ${style.scrollBarhide}`}>
+            <div ref={ref} className={`flex space-x-6 w-full overflow-x-hidden scroll-smooth bg-white py-4 border-[1px] px-4 border-[#00000011] rounded-lg`}>
                 {data?.map((e,i)=>(
                     <StatusCom
                     key={i}

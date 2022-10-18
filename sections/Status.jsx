@@ -12,7 +12,7 @@ export default function StatusCom({photo,name,...props}) {
           <div className={`relative ${style.gradientShape}`}>
             <div
             className={`relative z-[1] flex p-1 rounded-full bg-white`}>
-              <Image src={photo} layout="fixed" width={50} height={50} className="rounded-full" objectFit="cover" objectPosition={"center"}/>
+              <Image src={photo} layout="fixed" width={60} height={60} className="rounded-full" objectFit="cover" objectPosition={"center"}/>
             </div>
           </div>
             <p className='text-center'>{stringOverflow(name)}</p>
