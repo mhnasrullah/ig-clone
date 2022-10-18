@@ -1,25 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react'
-import StatusCom from '../sections/Status'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import StatusCom from './Status'
 import { getHasStatus } from '../utils/filterData'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { WindowCtx } from '../context';
 
 const Status = () => {
+    const {dataUser : {get : userData}} = useContext(WindowCtx);
     const [data,setData] = useState([]);
     const [scroll,setScroll] = useState(0);
     const ref = useRef();
 
     useEffect(()=>{
         ref.current.scrollLeft = scroll
-        ref.current.addEventListener('scroll',()=>{
-            setTimeout(()=>{
-                setScroll(ref.current.scrollLeft)
-            },1000)
-        })
     })
     useEffect(()=>{
-        setData(getHasStatus());
-    },[])
+        setData(getHasStatus(userData));
+    },[userData])
     return (
         <div className='relative'>
             <div ref={ref} className={`flex space-x-6 w-full overflow-x-hidden scroll-smooth bg-white py-4 border-[1px] px-4 border-[#00000011] rounded-lg`}>

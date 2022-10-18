@@ -4,10 +4,13 @@ import { WindowCtx } from '../context';
 import { useEffect, useState } from 'react';
 import { screenSize } from '../utils/func';
 import { getAuthUser } from '../utils/filterData';
+import Auth from '../components/Auth';
 
 function MyApp({ Component, pageProps }) {
   const [windowSize,setWindowSize] = useState(screenSize());
   const [auth,setAuth] = useState({});
+  const [user,setUser] = useState([]);
+  const [suggest,setSuggest] = useState([]);
 
     const ctxVal = {
         "size" : {
@@ -17,6 +20,14 @@ function MyApp({ Component, pageProps }) {
         "auth" : {
           "get" : auth,
           "set" : setAuth
+        },
+        "dataUser" : {
+          "get" : user,
+          "set" : setUser
+        },
+        "suggest" : {
+          "get" : suggest,
+          "set" : setSuggest
         }
     }
 
@@ -24,13 +35,12 @@ function MyApp({ Component, pageProps }) {
         window.addEventListener("resize",()=>{
           setWindowSize(screenSize())
         })
-
-        setAuth(getAuthUser())
       })
   
   return (
     <WindowCtx.Provider value={ctxVal}>
       <div className='flex font-rob'>
+        <Auth/>
         <Nav/>
         <Component {...pageProps} />
       </div>
