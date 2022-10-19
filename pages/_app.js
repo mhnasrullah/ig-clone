@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
   const [auth,setAuth] = useState({});
   const [user,setUser] = useState([]);
   const [suggest,setSuggest] = useState([]);
+  const [post,setPost] = useState([]);
 
     const ctxVal = {
         "size" : {
@@ -28,6 +29,10 @@ function MyApp({ Component, pageProps }) {
         "suggest" : {
           "get" : suggest,
           "set" : setSuggest
+        },
+        "post" : {
+          "get" : post,
+          "set" : setPost
         }
     }
 

@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext} from 'react'
 import List from '../components/List'
 import { WindowCtx } from '../context'
-import { getAllSuggest } from '../utils/filterData';
 
 export default function Suggest() {
   const {
@@ -9,16 +8,14 @@ export default function Suggest() {
     suggest : {get : suggest}
   } = useContext(WindowCtx);
 
-  // useEffect(()=>{},[auth])
-
   return (
     <div className='mt-4'>
-      {auth & (
+      {auth ? (
         <List
         _for="userSuggest"
         big
         data={auth}/>
-      )}
+      ) : (<div>Loading...</div>)}
 
       <h1 className='font-medium text-xl text-gray-500 mt-6'>Suggestions For You</h1>
 

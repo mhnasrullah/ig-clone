@@ -4,13 +4,17 @@ import Search from "../components/Search";
 import { WindowCtx } from "../context";
 import Suggest from "../sections/Suggest";
 
-export default function Home({user,suggest}) {
+export default function Home({user,suggest,post}) {
   const {
     dataUser : {set : setUser},
-    suggest : {set : setSuggest}
+    suggest : {set : setSuggest},
+    post : {
+      get : getPost,
+      set : setPost}
     } = useContext(WindowCtx);
   
   useEffect(()=>{
+    setPost(post);
     setUser(user);
     setSuggest(suggest);
   },[])
@@ -20,8 +24,17 @@ export default function Home({user,suggest}) {
       <div className="main w-full lg:w-5/12">
         <Search />
         <Card _for="status"/>
+
+        <div>
+          {getPost.map((e,i)=>(
+            <div key={i}>
+              <Card _for="feed" data={e}/>
+            </div>
+          ))}
+        </div>
+
       </div>
-      <div className="side hidden lg:block lg:w-1/4 h-10">
+      <div className="side hidden lg:block lg:w-1/4">
         <Suggest />
       </div>
     </div>
@@ -35,11 +48,15 @@ export async function getStaticProps(){
 
   const suggest = await fetch("https://sampleapiaul.vercel.app/api/ig/suggest");
   const suggestRes = await suggest.json();
+
+  const post = await fetch("https://sampleapiaul.vercel.app/api/ig/posts");
+  const postRes = await post.json();
   
   return {
     props : {
       user : userRes,
-      suggest : suggestRes
+      suggest : suggestRes,
+      post : postRes
     }
   }
 }

@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swiper-pagination-bullet-active{
+    background: #ffffff !important;
+}
+
+.swiper-button-disabled{
+    opacity: 0 !important;
+}
+
+pre{
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 5px;
+    font-family: 'roboto',sans-serif;
+    color: #002952;
+}
