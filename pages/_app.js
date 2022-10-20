@@ -47,7 +47,9 @@ function MyApp({ Component, pageProps }) {
       <div className='flex font-rob'>
         <Auth/>
         <Nav/>
-        <Component {...pageProps} />
+        <div className='w-full'>
+          <Component {...pageProps} />
+        </div>
       </div>
     </WindowCtx.Provider>
   )

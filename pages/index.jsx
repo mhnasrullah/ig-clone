@@ -3,6 +3,10 @@ import Card from "../components/Card";
 import Search from "../components/Search";
 import { WindowCtx } from "../context";
 import Suggest from "../sections/Suggest";
+import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import SearchBig from "../components/SearchBig";
 
 export default function Home({user,suggest,post}) {
   const {
@@ -20,9 +24,20 @@ export default function Home({user,suggest,post}) {
   },[])
 
   return (
-    <div className="flex w-5/6 md:w-11/12 min-h-screen bg-gray-50 px-4 lg:justify-center lg:space-x-16 pt-14">
+    <div className="flex md:w-11/12 md:ml-auto min-h-screen bg-gray-50 px-4 lg:justify-center lg:space-x-16 pt-14">
       <div className="main w-full lg:w-5/12">
-        <Search />
+
+        <div className="flex items-center justify-between mb-4 md:hidden">
+          <div className="relative w-20">
+            <Image src={"/logo.svg"} width={84} height={30}/>
+          </div>
+          <button className='text-center block'>
+              <FontAwesomeIcon icon={faHeart} size={"2x"}/>
+          </button>
+        </div>
+        <div className="mb-4 md:hidden">
+          <Search />
+        </div>
         <Card _for="status"/>
 
         <div>
@@ -34,6 +49,7 @@ export default function Home({user,suggest,post}) {
         </div>
 
       </div>
+
       <div className="side hidden lg:block lg:w-1/4">
         <Suggest />
       </div>

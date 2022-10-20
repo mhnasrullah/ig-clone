@@ -1,23 +1,25 @@
 import { faCircleXmark, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getUserByName } from '../utils/filterData'
 import Image from 'next/image'
 import Link from 'next/link'
+import { WindowCtx } from '../context'
 
 export default function Search() {
-    const[search,setSearch] = useState("")
+    const[search,setSearch] = useState("");
+    const {dataUser : {get : User}} = useContext(WindowCtx)
     const [data,setData] = useState([])
 
     useEffect(()=>{
         if(search){
-            setData(getUserByName(search));
+            setData(getUserByName(search,User));
         }
     },[search])
 
   return (
-  <div className='relative'>
-    <div className='bg-gray-100 border-[1px] flex items-center space-x-2 border-[#00000011] rounded-lg p-2 mb-4'>
+  <div className='relative w-full'>
+    <div className='bg-gray-100 border-[1px] flex items-center space-x-2 border-[#00000011] rounded-lg p-2'>
         <FontAwesomeIcon icon={faSearch} size="sm" className='text-gray-400'/>
         <input type="text" className='outline-none bg-transparent w-full' value={search} placeholder='Search' onChange={(e)=>setSearch(e.currentTarget.value)}/>
         {search ? (

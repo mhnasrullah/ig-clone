@@ -5,7 +5,7 @@ import StatusCom from './Status'
 import { getHasStatus } from '../utils/filterData'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight,faEllipsis, faHeart as HeartSolid} from '@fortawesome/free-solid-svg-icons';
-import { faBookmark, faHeart, faMessage, faShareFromSquare } from '@fortawesome/free-regular-svg-icons';
+import { faBookmark, faFaceSmile, faHeart, faMessage, faShareFromSquare } from '@fortawesome/free-regular-svg-icons';
 import { WindowCtx } from '../context';
 import { Pagination, Navigation } from 'swiper';
 import parse from 'html-react-parser'
@@ -62,6 +62,8 @@ const Status = () => {
 }
 
 const Feed = ({data}) => {
+
+    const [liked,setLike] = useState(false);
     
     if(!data){
         return <div>...</div>
@@ -70,10 +72,11 @@ const Feed = ({data}) => {
             account : {photo,username},
             content,
             like,
-            caption
+            caption,
+            comments,
+            time
         } = data
 
-        console.log(caption)
         return (
             <div className='w-full bg-white border-[1px] rounded-lg border-[#00000011] mt-4'>
                 <div className="flex px-4 py-2 justify-between">
@@ -128,8 +131,8 @@ const Feed = ({data}) => {
 
                 <div className='flex py-4 px-6 items-center justify-between'>
                     <div className='flex space-x-6 items-center'>
-                        <button>
-                            <FontAwesomeIcon icon={faHeart} size={"xl"}/>
+                        <button onClick={()=>setLike(!liked)}>
+                            <FontAwesomeIcon icon={liked ? HeartSolid : faHeart} className={`hover:scale-110 ${liked ? 'text-red-500' : ' '}`} size={"xl"}/>
                         </button>
                         <button>
                             <FontAwesomeIcon icon={faMessage} size={"xl"}/>
@@ -145,7 +148,25 @@ const Feed = ({data}) => {
 
                 <div className='pb-4 px-6'>
                     <p className="font-medium">{like} Likes</p>
-                    <div className='mt-3'><span className='font-medium inline-block'>{username}</span><span>{parse(caption)}</span></div>
+                    <div className='mt-3'><span className='font-medium inline-block mr-2'>{username}</span><span>{parse(caption)}</span></div>
+                </div>
+
+                <button className='mx-6 text-gray-500 mb-4'>
+                    {comments.length > 0 ? (
+                        <p>View All {comments.length} Comments</p>
+                    ):(
+                        <p>No Comments</p>
+                    )}
+                </button>
+
+                <p className='mx-6 text-gray-500 mb-4'>{time?.toUpperCase()}</p>
+
+                <div className='px-6 py-4 border-t-[1px] border-[#00000011] flex space-x-4'>
+                    <button>
+                        <FontAwesomeIcon icon={faFaceSmile} size='xl'/>
+                    </button>
+                    <input placeholder='Add a Comment' className='w-full outline-none'/>
+                    <button className='text-blue-600 font-medium'>Post</button>
                 </div>
 
             </div>

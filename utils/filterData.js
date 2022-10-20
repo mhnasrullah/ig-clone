@@ -1,5 +1,3 @@
-import user from "../data/dataUser.json"
-import suggest  from "../data/suggestUserData.json"
 
 export const getHasStatus = (data) =>{
     return data.filter((e)=>(
@@ -13,12 +11,8 @@ export const getAuthUser = (data) =>{
     ))[0]
 }
 
-export const getUserByName = (str="") =>{
-    return user.filter((e)=>{
+export const getUserByName = (str="",data) =>{
+    return data.filter((e)=>{
         return e.username.toLowerCase().match(str.toLowerCase())
     })
-}
-
-export const getAllSuggest = () => {
-    return suggest;
 }
