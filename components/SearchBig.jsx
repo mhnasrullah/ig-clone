@@ -7,7 +7,7 @@ import { getUserByName } from '../utils/filterData';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function SearchBig({show,setShow}) {
+export default function SearchBig({show,setShow,refValue,setActive}) {
     const[search,setSearch] = useState("");
     const {dataUser : {get : User}} = useContext(WindowCtx)
     const [data,setData] = useState([])
@@ -23,7 +23,9 @@ export default function SearchBig({show,setShow}) {
         <div className='w-5/6 lg:w-9/12 ml-auto pt-10 pr-6'>
             <div className='flex mb-10 items-center justify-between'>
                 <h1 className='text-2xl font-medium'>Search</h1>
-                <button onClick={()=>{setShow(!show)}}>
+                <button onClick={()=>{
+                    setActive(refValue);
+                    setShow(!show)}}>
                     <FontAwesomeIcon size='xl' icon={X} className="text-gray-500"/>
                 </button>
             </div>

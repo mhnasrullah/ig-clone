@@ -4,7 +4,7 @@ import Link from 'next/link'
 const Linked = ({children,href,id,active,className,setActive,...props}) => {
     return(
         <Link href={href}>
-            <a {...props} onClick={()=>setActive(id)} className={`${active ? '' : ' '} ${className}`}>
+            <a {...props} onClick={()=>setActive(id)} className={`${className}`}>
                 {children}
             </a>
         </Link>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faCircle,faCompass,faMessage,faHeart,faSquarePlus } from '@fortawesome/free-regular-svg-icons'
@@ -34,11 +34,6 @@ const navIcon = [
         "icon" : faMessage,
         "href" : "/"
     },
-    // {
-    //     "id" : 5,
-    //     "icon" : faHeart,
-    //     "href" : "/"
-    // },
 ];
 
 export default function Nav() {
@@ -46,6 +41,7 @@ export default function Nav() {
     const [active,setActive] = useState(1);
     const [sizeWindow,setSize] = useState("sm");
     const [search,setSearch] = useState(false);
+    const refActive = useRef(null)
     const {
         size : {get : windowSize},
         auth : {get : auth}
@@ -55,20 +51,19 @@ export default function Nav() {
         setSize(windowSize)
     })
 
-
   return (
     <>
     <nav className={`ease-out py-6 bottom-0 px-6 h-fit items-center transition-all flex flex-row md:flex-col w-full md:w-1/12 md:h-screen md:pt-16 border-[1px] border-[#00000011] fixed z-[1000] bg-white`}>
         <FontAwesomeIcon icon={faInstagram} size="2x" className='hidden md:block mb-16'/>
 
-        <div className='flex md:flex-col items-center md:space-y-10 justify-between w-full'>
+        <div className='flex md:flex-col items-center md:space-y-6 justify-between w-full'>
             
             {sizeWindow == "sm" ? (
                 <>
                     {navIcon.map(({id,href,icon},i)=>(
                         <div key={i}>
-                            <Anchor type={"link"} setActive={(e)=>setActive(e)} id={id} key={id} href={href} active={active==id} className="text-center">
-                                <FontAwesomeIcon icon={icon} size={"2x"}/>
+                            <Anchor type={"link"} setActive={(e)=>setActive(e)} id={id} key={id} href={href} className={`text-center p-2 ${active==id ? 'bg-gray-100 rounded-full' : 'bg-transparent'} `}>
+                                <FontAwesomeIcon icon={icon} size={"2xl"}/>
                             </Anchor>
                         </div>
                     ))
@@ -78,22 +73,30 @@ export default function Nav() {
                 )
                     : (
                         <>
-                            <Anchor type={"link"} setActive={(e)=>setActive(e)} href={"/"} active={active==1} className="text-center block">
+                            <Anchor type={"link"} id={1} setActive={(e)=>setActive(e)} href={"/"} className={`p-2 rounded-full ${active == 1 ? 'bg-gray-100' : 'bg-transparent'} text-center block`}>
                                 <FontAwesomeIcon icon={faCircle} size={"2x"}/>
                             </Anchor>
-                            <button className='text-center block' onClick={()=>(setSearch(!search))}>
+                            <button className={`text-center block p-2 rounded-full ${active == 2 ? 'bg-gray-100' : 'bg-transparent'}`} onClick={()=>{
+                                setSearch(!search);
+                                if(active == 2){
+                                    setActive(refActive.current)
+                                }else{
+                                    refActive.current = active
+                                    setActive(2);
+                                }
+                            }}>
                                 <FontAwesomeIcon icon={faMagnifyingGlass} size={"2x"}/>
                             </button>
-                            <Anchor type={"link"} setActive={(e)=>setActive(e)} href={"/"} active={active==1} className="text-center block">
+                            <Anchor type={"link"} setActive={(e)=>setActive(e)} href={"/"} className="text-center block p-2">
                                 <FontAwesomeIcon icon={faCompass} size={"2x"}/>
                             </Anchor>
-                            <Anchor type={"link"} setActive={(e)=>setActive(e)} href={"/"} active={active==1} className="text-center block">
+                            <Anchor type={"link"} setActive={(e)=>setActive(e)} href={"/"} className="text-center block p-2">
                                 <FontAwesomeIcon icon={faMessage} size={"2x"}/>
                             </Anchor>
-                            <button className='text-center block'>
+                            <button className='text-center block p-2'>
                                 <FontAwesomeIcon icon={faHeart} size={"2x"}/>
                             </button>
-                            <button className='text-center block'>
+                            <button className='text-center block p-2'>
                                 <FontAwesomeIcon icon={faSquarePlus} size={"2x"}/>
                             </button>
                         </>
@@ -111,7 +114,7 @@ export default function Nav() {
             <FontAwesomeIcon icon={faBars} size={windowSize == "lg" ? "2x" : "xl" }/>
         </Anchor>
     </nav>
-    <SearchBig show={search} setShow={(e)=>setSearch(e)}/>
+    <SearchBig refValue={refActive.current} setActive={(e)=>setActive(e)} show={search} setShow={(e)=>setSearch(e)}/>
     </>
   )
 }
