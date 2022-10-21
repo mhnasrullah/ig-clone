@@ -64,6 +64,16 @@ const Status = () => {
 const Feed = ({data}) => {
 
     const [liked,setLike] = useState(false);
+    const [doubleLike,setDbl] = useState(false);
+    const [more,setMore] = useState(false);
+    
+    useEffect(()=>{
+        if(doubleLike){
+            setTimeout(()=>{
+                setDbl(false)
+            },1000)
+        }
+    })
     
     if(!data){
         return <div>...</div>
@@ -93,9 +103,16 @@ const Feed = ({data}) => {
 
                 {content.length <= 1 ?
                 (
-                    <div className='w-full'>
-                        <Image src={content[0]} layout="responsive" width={1} height={1} objectFit={"cover"} objectPosition="center" />
-                    </div>
+                    <button className='w-full relative flex justify-center items-center'
+                    onDoubleClick={()=>{
+                        setLike(true)
+                        setDbl(true)
+                        }}>
+                        <div className='w-full'>
+                            <Image src={content[0]} layout="responsive" width={1} height={1} objectFit={"cover"} objectPosition="center" />
+                        </div>
+                        <FontAwesomeIcon icon={HeartSolid} size="10x" className={`absolute text-white ${doubleLike ? 'opacity-70' : 'opacity-0'} duration-300 transition ease-out`}/>
+                    </button>
                 ) :
                 (<div>
                      <Swiper
@@ -109,9 +126,17 @@ const Feed = ({data}) => {
                         slidesPerView={1}>
                     {content.map((e,i)=>(
                         <SwiperSlide key={i}>
-                            <div className='w-full'>
-                                <Image src={e} layout="responsive" width={1} height={1} objectFit={"cover"} objectPosition="center" />
-                            </div>
+                            <button
+                            onDoubleClick={()=>{
+                                setLike(true)
+                                setDbl(true)
+                                }}
+                            className='relative flex w-full items-center justify-center'>
+                                <div className='w-full'>
+                                    <Image src={e} layout="responsive" width={1} height={1} objectFit={"cover"} objectPosition="center" />
+                                </div>
+                                <FontAwesomeIcon icon={HeartSolid} size="10x" className={`absolute text-white ${doubleLike ? 'opacity-70' : 'opacity-0'} duration-300 transition ease-out z-[10]`}/>
+                            </button>
                         </SwiperSlide>
                     ))}
                     <div className='absolute bottom-0 left-0 z-50 w-fit top-0 flex items-center'>
@@ -132,23 +157,33 @@ const Feed = ({data}) => {
                 <div className='flex py-4 px-6 items-center justify-between'>
                     <div className='flex space-x-6 items-center'>
                         <button onClick={()=>setLike(!liked)}>
-                            <FontAwesomeIcon icon={liked ? HeartSolid : faHeart} className={`hover:scale-110 ${liked ? 'text-red-500' : ' '}`} size={"xl"}/>
+                            <FontAwesomeIcon icon={liked ? HeartSolid : faHeart} className={`${liked ? 'text-red-500' : 'hover:text-gray-500'}`} size={"xl"}/>
                         </button>
                         <button>
-                            <FontAwesomeIcon icon={faMessage} size={"xl"}/>
+                            <FontAwesomeIcon icon={faMessage} size={"xl"} className="hover:text-gray-500"/>
                         </button>
                         <button>
-                            <FontAwesomeIcon icon={faShareFromSquare} size={"xl"}/>
+                            <FontAwesomeIcon icon={faShareFromSquare} size={"xl"} className="hover:text-gray-500"/>
                         </button>
                     </div>
                     <button>
-                        <FontAwesomeIcon icon={faBookmark} size={"xl"}/>
+                        <FontAwesomeIcon icon={faBookmark} size={"xl"} className="hover:text-gray-500"/>
                     </button>
                 </div>
 
                 <div className='pb-4 px-6'>
-                    <p className="font-medium">{like} Likes</p>
-                    <div className='mt-3'><span className='font-medium inline-block mr-2'>{username}</span><span>{parse(caption)}</span></div>
+                    <p className="font-medium">{liked ? (like+1).toLocaleString('en-US') : like.toLocaleString('en-US')} Likes</p>
+                    <div className='mt-3'>
+                        <span className='font-medium inline-block mr-2'>{username}</span>
+                        <span>{more ? parse(caption) : parse(caption).slice(0,1)}</span>
+                        {parse(caption).length > 1 &&(
+                            <span className={`ml-1 text-gray-500 ${more ? "hidden" : " "}`}>...
+                                <button className='ml-1' onClick={()=>setMore(!more)}>
+                                    more
+                                </button>
+                            </span>
+                        )}
+                    </div>
                 </div>
 
                 <button className='mx-6 text-gray-500 mb-4'>

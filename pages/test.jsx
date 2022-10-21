@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function test({data}) {
-  console.log(data)
   return (
     <div>test</div>
   )

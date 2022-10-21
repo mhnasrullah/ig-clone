@@ -32,7 +32,7 @@ export default function Suggest() {
         :false}
       </div>
 
-      <p className='mt-6 text-gray-400'>© Cloned by Hasan Nasrullah</p>
+      <p className='mt-6 text-gray-400'>©2022 INSTAGRAM CLONE FROM HASAN NASRULLAH</p>
     </div>
   )
 }
