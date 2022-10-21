@@ -17,3 +17,11 @@ pre{
     font-family: 'roboto',sans-serif;
     color: #002952;
 }
+
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
