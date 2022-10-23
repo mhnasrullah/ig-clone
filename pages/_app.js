@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { screenSize } from '../utils/func';
 import { getAuthUser } from '../utils/filterData';
 import Auth from '../components/Auth';
+import Loading from '../sections/Loading';
 
 function MyApp({ Component, pageProps }) {
   const [windowSize,setWindowSize] = useState(screenSize());
@@ -12,6 +13,7 @@ function MyApp({ Component, pageProps }) {
   const [user,setUser] = useState([]);
   const [suggest,setSuggest] = useState([]);
   const [post,setPost] = useState([]);
+  const [load,setLoad] = useState(true);
 
     const ctxVal = {
         "size" : {
@@ -33,6 +35,10 @@ function MyApp({ Component, pageProps }) {
         "post" : {
           "get" : post,
           "set" : setPost
+        },
+        "loading" : {
+          "get" : load,
+          "set" : setLoad
         }
     }
 
@@ -45,11 +51,16 @@ function MyApp({ Component, pageProps }) {
   return (
     <WindowCtx.Provider value={ctxVal}>
       <div className='flex font-rob'>
-        <Auth/>
-        <Nav/>
-        <div className='w-full'>
-          <Component {...pageProps} />
-        </div>
+        {load ? <Loading/> :
+        (
+          <>
+            <Auth/>
+            <Nav/>
+            <div className='w-full'>
+              <Component {...pageProps} />
+            </div>
+          </>
+        )}
       </div>
     </WindowCtx.Provider>
   )
