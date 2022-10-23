@@ -4,6 +4,7 @@ module.exports = {
     "./pages/**/*.{js,jsx}",
     "./components/**/*.{js,jsx}",
     "./sections/**/*.{js,jsx}",
+    "./routes/**/*.{js,jsx}",
   ],
   theme: {
     fontFamily:{

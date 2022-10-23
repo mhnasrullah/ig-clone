@@ -6,7 +6,6 @@ import Suggest from "../sections/Suggest";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import SearchBig from "../components/SearchBig";
 
 export default function Home({user,suggest,post}) {
   const {
